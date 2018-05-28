@@ -1,0 +1,40 @@
+{
+  "name": "implicit-markdown",
+  "version": "0.0.1",
+  "description": "Parsing markdown to an implicit-ui json format",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel -s inline -d lib src",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeadingLight/implicit-markdown.git"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.18.2",
+    "eslint-config-iruhl-base": "^0.6.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-iruhl": "^0.2.1",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.2"
+  },
+  "keywords": [
+    "markdown",
+    "javascript"
+  ],
+  "author": "Pontus Rulander",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeadingLight/implicit-markdown/issues"
+  },
+  "homepage": "https://github.com/LeadingLight/implicit-markdown#readme"
+}

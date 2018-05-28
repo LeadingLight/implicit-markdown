@@ -1,0 +1,52 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["iruhl-base", "iruhl-base/imports"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "prefer-reflect": "off",
+    "class-methods-use-this": ["error", {"exceptMethods": ["render", "componentDidMount", "componentWillUnmount"]}],
+    "sort-keys": "off",
+    "react/forbid-foreign-prop-types": "off",
+    "react/sort-prop-types": "off",
+    "iruhl/sort-prop-types": ["error", {
+      "actionsLast": true,
+      "callbacksLast": true,
+      "ignoreCase": true,
+      "requiredFirst": true,
+      "sortShapeProp": true
+    }],
+    "no-invalid-this": "off",
+    "babel/no-invalid-this": "error",
+    "react/jsx-sort-props": ["error", {
+      "callbacksLast": true,
+      "shorthandFirst": true,
+      "shorthandLast": false,
+      "ignoreCase": true,
+      "noSortAlphabetically": false,
+      "reservedFirst": true
+    }],
+    "iruhl/no-props-reassign": "error"
+  },
+  "plugins": [
+    "babel",
+    "import",
+    "react",
+    "iruhl"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolve": {
+      "paths": ["src/"]
+    }
+  }
+}
