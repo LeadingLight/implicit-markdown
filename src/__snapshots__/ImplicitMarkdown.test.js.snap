@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImplicitMarkdown should parse simple a json object renderable by implicit-ui 1`] = `Array []`;
