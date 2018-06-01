@@ -2,6 +2,7 @@ import StateCore from './StateCore';
 import ParserCore from './ParserCore';
 import ParserBlock from './ParserBlock';
 import ParserInline from './ParserInline';
+import Renderer from './Renderer';
 
 const rulesCore = [
   ['block', require('./rules/block')],
@@ -21,10 +22,7 @@ export default class ImplicitMarkdown {
     this.core = new ParserCore(rulesCore);
     this.block = new ParserBlock(rulesBlock);
     this.inline = new ParserInline(rulesInline);
-
-    /*
     this.renderer = new Renderer();
-    this.ruler    = new Ruler(); */
 
     this.options = {...options};
   }
@@ -35,5 +33,11 @@ export default class ImplicitMarkdown {
     this.core.process(state);
 
     return state.tokens;
+  }
+
+  render(str, env) {
+    env = env || {};
+
+    return this.renderer.render(this.parse(str, env), this.options, env);
   }
 }

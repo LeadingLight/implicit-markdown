@@ -10,11 +10,25 @@ describe('ImplicitMarkdown', () => {
     expect(md.parse(mdTextWithLink)).toMatchSnapshot();
   });
 
-  it('testing headers', () => {
+  it('test paragraph render', () => {
+    const md = new ImplicitMarkdown();
+    const mdTextWithLink = 'this is a text with a [link](#this-is-an-anchor) in it';
+
+    expect(md.render(mdTextWithLink)).toMatchSnapshot();
+  });
+
+  it('testing headers parse', () => {
     const md = new ImplicitMarkdown();
     const mdTextWithLink = '# this is a title';
 
     expect(md.parse(mdTextWithLink)).toMatchSnapshot();
+  });
+
+  it('testing headers render', () => {
+    const md = new ImplicitMarkdown();
+    const mdTextWithLink = '# this is a title';
+
+    expect(md.render(mdTextWithLink)).toMatchSnapshot();
   });
 });
 

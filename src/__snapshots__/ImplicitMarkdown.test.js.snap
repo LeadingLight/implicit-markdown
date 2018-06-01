@@ -35,7 +35,12 @@ Array [
 ]
 `;
 
-exports[`ImplicitMarkdown testing headers 1`] = `
+exports[`ImplicitMarkdown test paragraph render 1`] = `
+"<p>this is a text with a [link](#this-is-an-anchor) in it</p>
+"
+`;
+
+exports[`ImplicitMarkdown testing headers parse 1`] = `
 Array [
   Object {
     "hLevel": 1,
@@ -68,4 +73,9 @@ Array [
     "type": "heading_close",
   },
 ]
+`;
+
+exports[`ImplicitMarkdown testing headers render 1`] = `
+"<h1>this is a title</h1>
+"
 `;
