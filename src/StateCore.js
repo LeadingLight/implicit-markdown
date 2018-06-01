@@ -6,8 +6,8 @@ export default class StateCore {
     this.tokens = [];
     this.inlineMode = false;
 
-    // this.inline = instance.inline;
-    // this.block = instance.block;
+    this.inline = instance.inline;
+    this.block = instance.block;
     // this.renderer = instance.renderer;
     // this.typographer = instance.typographer;
   }

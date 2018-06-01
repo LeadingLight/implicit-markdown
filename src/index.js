@@ -1,12 +1,28 @@
 import StateCore from './StateCore';
 import ParserCore from './ParserCore';
+import ParserBlock from './ParserBlock';
+import ParserInline from './ParserInline';
+
+const rulesCore = [
+  ['block', require('./rules/block')],
+  ['inline', require('./rules/inline')]
+];
+const rulesBlock = [
+  ['heading', require('./rules/heading'), ['paragraph', 'blockquote']],
+  ['paragraph', require('./rules/paragraph')]
+];
+
+const rulesInline = [
+];
+
 
 export default class ImplicitMarkdown {
   constructor(options) {
-    this.core = new ParserCore([]);
+    this.core = new ParserCore(rulesCore);
+    this.block = new ParserBlock(rulesBlock);
+    this.inline = new ParserInline(rulesInline);
 
-    /* this.inline   = new ParserInline();
-    this.block    = new ParserBlock();
+    /*
     this.renderer = new Renderer();
     this.ruler    = new Ruler(); */
 

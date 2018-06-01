@@ -1,3 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ImplicitMarkdown should parse simple a json object renderable by implicit-ui 1`] = `Array []`;
+exports[`ImplicitMarkdown should parse simple string to a json object renderable by implicit-ui 1`] = `
+Array [
+  Object {
+    "level": 0,
+    "lines": Array [
+      0,
+      1,
+    ],
+    "tight": false,
+    "type": "paragraph_open",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "content": "this is a text with a [link](#this-is-an-anchor) in it",
+        "level": 0,
+        "type": "text",
+      },
+    ],
+    "content": "this is a text with a [link](#this-is-an-anchor) in it",
+    "level": 1,
+    "lines": Array [
+      0,
+      1,
+    ],
+    "type": "inline",
+  },
+  Object {
+    "level": 0,
+    "tight": false,
+    "type": "paragraph_close",
+  },
+]
+`;
+
+exports[`ImplicitMarkdown testing headers 1`] = `
+Array [
+  Object {
+    "hLevel": 1,
+    "level": 0,
+    "lines": Array [
+      0,
+      1,
+    ],
+    "type": "heading_open",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "content": "this is a title",
+        "level": 0,
+        "type": "text",
+      },
+    ],
+    "content": "this is a title",
+    "level": 1,
+    "lines": Array [
+      0,
+      1,
+    ],
+    "type": "inline",
+  },
+  Object {
+    "hLevel": 1,
+    "level": 0,
+    "type": "heading_close",
+  },
+]
+`;
