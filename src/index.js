@@ -2,7 +2,6 @@ import StateCore from './StateCore';
 import ParserCore from './ParserCore';
 import ParserBlock from './ParserBlock';
 import ParserInline from './ParserInline';
-import Renderer from './Renderer';
 
 const rulesCore = [
   ['block', require('./rules/block')],
@@ -18,11 +17,11 @@ const rulesInline = [
 
 
 export default class ImplicitMarkdown {
-  constructor(options) {
+  constructor(renderer, options) {
     this.core = new ParserCore(rulesCore);
     this.block = new ParserBlock(rulesBlock);
     this.inline = new ParserInline(rulesInline);
-    this.renderer = new Renderer();
+    this.renderer = renderer;
 
     this.options = {...options};
   }

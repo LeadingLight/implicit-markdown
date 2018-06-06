@@ -34,7 +34,7 @@ function getBreak(tokens, idx) {
   return '\n';
 }
 
-export default class Renderer {
+export default class HtmlRenderer {
   constructor() {
     this.rules = renderRules;
   }

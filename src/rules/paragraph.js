@@ -1,12 +1,11 @@
-'use strict';
 
 
-module.exports = function paragraph(state, startLine/*, endLine*/) {
-  var endLine, content, terminate, i, l,
+module.exports = function paragraph(state, startLine) {
+  let content, terminate, i, l,
     nextLine = startLine + 1,
     terminatorRules;
 
-  endLine = state.lineMax;
+  const endLine = state.lineMax;
 
   // jump line-by-line until empty one or EOF
   if (nextLine < endLine && !state.isEmpty(nextLine)) {
@@ -36,14 +35,14 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
     state.tokens.push({
       type: 'paragraph_open',
       tight: false,
-      lines: [ startLine, state.line ],
+      lines: [startLine, state.line],
       level: state.level
     });
     state.tokens.push({
       type: 'inline',
-      content: content,
+      content,
       level: state.level + 1,
-      lines: [ startLine, state.line ],
+      lines: [startLine, state.line],
       children: []
     });
     state.tokens.push({

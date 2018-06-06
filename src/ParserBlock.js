@@ -1,12 +1,6 @@
 import Ruler from './Ruler';
 import StateBlock from './StateBlock';
 
-
-const TABS_SCAN_RE = /[\n\t]/g;
-const NEWLINES_RE = /\r[\n\u0085]|[\u2424\u2028\u0085]/g;
-const SPACES_RE = /\u00a0/g;
-
-
 export default class ParserBlock {
   constructor(rules) {
     this.options = {};
@@ -73,35 +67,43 @@ export default class ParserBlock {
   }
 
   parse(str, options, env, outTokens) {
-    let state, lineStart = 0, lastTabPos = 0;
+    if (!str) return;
 
-    if (!str) return [];
+    str = replaceTabs(normalizeSpaceAndNewLine(str));
 
-    // Normalize spaces
-    str = str.replace(SPACES_RE, ' ');
+    const state = new StateBlock(str, this, options, env, outTokens);
 
-    // Normalize newlines
-    str = str.replace(NEWLINES_RE, '\n');
-
-    // Replace tabs with proper number of spaces (1..4)
-    if (str.indexOf('\t') >= 0) {
-      str = str.replace(TABS_SCAN_RE, (match, offset) => {
-        let result;
-
-        if (str.charCodeAt(offset) === 0x0A) {
-          lineStart = offset + 1;
-          lastTabPos = 0;
-
-          return match;
-        }
-        result = '    '.slice((offset - lineStart - lastTabPos) % 4);
-        lastTabPos = offset - lineStart + 1;
-
-        return result;
-      });
-    }
-
-    state = new StateBlock(str, this, options, env, outTokens);
     this.tokenize(state, state.line, state.lineMax);
   }
+}
+
+const NEWLINES_RE = /\r[\n\u0085]|[\u2424\u2028\u0085]/g;
+const SPACES_RE = /\u00a0/g;
+
+function normalizeSpaceAndNewLine(str) {
+  return str.replace(SPACES_RE, ' ').replace(NEWLINES_RE, '\n');
+}
+
+const TABS_SCAN_RE = /[\n\t]/g;
+const NEWLINE_CHAR = 0x0A;
+
+function replaceTabs(str) {
+  if (str.indexOf('\t') < 0) return str;
+
+  let lineStart = 0;
+  let lastTabPos = 0;
+
+  return str.replace(TABS_SCAN_RE, (match, offset) => {
+    if (str.charCodeAt(offset) === NEWLINE_CHAR) {
+      lineStart = offset + 1;
+      lastTabPos = 0;
+
+      return match;
+    }
+    const result = '    '.slice((offset - lineStart - lastTabPos) % 4);
+
+    lastTabPos = offset - lineStart + 1;
+
+    return result;
+  });
 }
